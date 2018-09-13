@@ -1,5 +1,27 @@
 package discordmon
 
+// All Pokemon types, as a mask
+const (
+	IDNormal = 1 << iota
+	IDFire
+	IDWater
+	IDElectric
+	IDGrass
+	IDIce
+	IDFighting
+	IDPoison
+	IDGround
+	IDFlying
+	IDPsychic
+	IDBug
+	IDRock
+	IDGhost
+	IDDragon
+	IDDark
+	IDSteel
+	IDFairy
+)
+
 var (
 TypeNormal		= PokeType{	Name:		"Normal",
 							TypeID:		IDNormal,
