@@ -43,7 +43,8 @@ func NewFromID(ID int) *PokeMon {
 	return Table[ID].New()
 }
 
-//TODO: Finish this func and test it
-func DoTurn(mon1 *PokeMon, move1 PokeMove, mon2 *PokeMon, move2 PokeMove) {
+//TODO: Make this func flexible to allow moves with special effects such as absorb, super fang and so on.
+//Maybe by using func parameters?
+func DoTurn(mon1 *PokeMon, move1 *PokeMove, mon2 *PokeMon, move2 *PokeMove) {
 
 }
