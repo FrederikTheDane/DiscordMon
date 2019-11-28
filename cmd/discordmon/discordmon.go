@@ -13,7 +13,7 @@ func main() {
 
 	displayNatures()
 	fmt.Printf("\n")
-	for k, v := range monsters{
+	for k, v := range monsters {
 		v = mechanics.NewFromID(1)
 		v.SetLevel(100)
 		v.GainEVs([6]int{255, 255, 255, 255, 255, 255})
@@ -36,7 +36,7 @@ func displayPokemon(mon *mechanics.PokeMon, detailed bool) {
 	fmt.Printf("%16s %d\n", "Level:", mon.Level)
 
 	if detailed {
-		fmt.Printf("%16s %3v\n","Base stats:", mon.Base.BaseStats)
+		fmt.Printf("%16s %3v\n", "Base stats:", mon.Base.BaseStats)
 		fmt.Printf("%16s %3v\n", "Pokemon IV's:", mon.IVS)
 		fmt.Printf("%16s %3v\n", "Pokemon EV's:", mon.EVS)
 

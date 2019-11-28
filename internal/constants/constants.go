@@ -78,8 +78,8 @@ const (
 )
 
 var (
-	StatNames map[int]string
-	Natures map[int][]float32
+	StatNames   map[int]string
+	Natures     map[int][]float32
 	NatureNames map[int]string
 )
 
@@ -88,43 +88,43 @@ func init() {
 	{
 		StatNames = make(map[int]string)
 
-		StatNames[StatHP]			= "HP"
-		StatNames[StatAttack]		= "Attack"
-		StatNames[StatDefense]		= "Defense"
-		StatNames[StatSAttack]		= "Special Attack"
-		StatNames[StatSDefense]		= "Special Defense"
-		StatNames[StatSpeed]		= "Speed"
+		StatNames[StatHP] = "HP"
+		StatNames[StatAttack] = "Attack"
+		StatNames[StatDefense] = "Defense"
+		StatNames[StatSAttack] = "Special Attack"
+		StatNames[StatSDefense] = "Special Defense"
+		StatNames[StatSpeed] = "Speed"
 	}
 
 	//Doesn't need to be in it's own block, but improves readability
 	{
 		NatureNames = make(map[int]string)
 
-		NatureNames[NatureHardy]	= "Hardy"
-		NatureNames[NatureLonely]	= "Lonely"
-		NatureNames[NatureAdamant]	= "Adamant"
-		NatureNames[NatureNaughty]	= "Naughty"
-		NatureNames[NatureBrave]	= "Brave"
-		NatureNames[NatureBold]		= "Bold"
-		NatureNames[NatureDocile]	= "Docile"
-		NatureNames[NatureImpish]	= "Impish"
-		NatureNames[NatureLax]		= "Lax"
-		NatureNames[NatureRelaxed]	= "Relaxed"
-		NatureNames[NatureModest]	= "Modest"
-		NatureNames[NatureMild]		= "Mild"
-		NatureNames[NatureBashful]	= "Bashful"
-		NatureNames[NatureRash]		= "Rash"
-		NatureNames[NatureQuiet]	= "Quiet"
-		NatureNames[NatureCalm]		= "Calm"
-		NatureNames[NatureGentle]	= "Gentle"
-		NatureNames[NatureCareful]	= "Careful"
-		NatureNames[NatureQuirky]	= "Quirky"
-		NatureNames[NatureSassy]	= "Sassy"
-		NatureNames[NatureTimid]	= "Timid"
-		NatureNames[NatureHasty]	= "Hasty"
-		NatureNames[NatureJolly]	= "Jolly"
-		NatureNames[NatureNaive]	= "Naive"
-		NatureNames[NatureSerious]	= "Serious"
+		NatureNames[NatureHardy] = "Hardy"
+		NatureNames[NatureLonely] = "Lonely"
+		NatureNames[NatureAdamant] = "Adamant"
+		NatureNames[NatureNaughty] = "Naughty"
+		NatureNames[NatureBrave] = "Brave"
+		NatureNames[NatureBold] = "Bold"
+		NatureNames[NatureDocile] = "Docile"
+		NatureNames[NatureImpish] = "Impish"
+		NatureNames[NatureLax] = "Lax"
+		NatureNames[NatureRelaxed] = "Relaxed"
+		NatureNames[NatureModest] = "Modest"
+		NatureNames[NatureMild] = "Mild"
+		NatureNames[NatureBashful] = "Bashful"
+		NatureNames[NatureRash] = "Rash"
+		NatureNames[NatureQuiet] = "Quiet"
+		NatureNames[NatureCalm] = "Calm"
+		NatureNames[NatureGentle] = "Gentle"
+		NatureNames[NatureCareful] = "Careful"
+		NatureNames[NatureQuirky] = "Quirky"
+		NatureNames[NatureSassy] = "Sassy"
+		NatureNames[NatureTimid] = "Timid"
+		NatureNames[NatureHasty] = "Hasty"
+		NatureNames[NatureJolly] = "Jolly"
+		NatureNames[NatureNaive] = "Naive"
+		NatureNames[NatureSerious] = "Serious"
 	}
 
 	Natures = make(map[int][]float32)

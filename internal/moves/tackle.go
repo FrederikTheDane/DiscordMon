@@ -5,7 +5,6 @@ import (
 	"github.com/frederikthedane/DiscordMon/internal/mechanics"
 )
 
-
 var MoveTackle = mechanics.PokeMove{
 	Type:           constants.TypeNormal,
 	Category:       constants.CategoryPhysical,

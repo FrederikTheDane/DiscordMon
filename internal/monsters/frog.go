@@ -14,13 +14,13 @@ var movepool = mechanics.MovePool{
 }
 
 var base = mechanics.PokeMonBase{
-	Gendered:   false,
-	ID:         1,
-	Types:      [2]constants.PokeType{},
-	BaseStats:  [6]int{40, 30, 30, 40, 50, 30},
-	EVYield:    [6]int{ 0,  0,  0,  0,  1,  0},
-	MovePool:   movepool,
-	Name:       ":frog:",
+	Gendered:  false,
+	ID:        1,
+	Types:     [2]constants.PokeType{},
+	BaseStats: [6]int{40, 30, 30, 40, 50, 30},
+	EVYield:   [6]int{0, 0, 0, 0, 1, 0},
+	MovePool:  movepool,
+	Name:      ":frog:",
 }
 
 func newFrog() *mechanics.PokeMon {
