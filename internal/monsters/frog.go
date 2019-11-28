@@ -1,19 +1,19 @@
 package monsters
 
 import (
-	"github.com/frederikthedane/discordmon"
-	"github.com/frederikthedane/discordmon/moves"
-	"github.com/frederikthedane/discordmon/constants"
+	"github.com/frederikthedane/DiscordMon/internal/constants"
+	"github.com/frederikthedane/DiscordMon/internal/mechanics"
+	"github.com/frederikthedane/DiscordMon/internal/moves"
 	"math/rand"
 	"time"
 )
 
-var movepool = discordmon.MovePool{
-	0: []discordmon.PokeMove{discordmonMoves.MoveAstonish},
-	3: []discordmon.PokeMove{},
+var movepool = mechanics.MovePool{
+	0: []mechanics.PokeMove{moves.MoveAstonish},
+	3: []mechanics.PokeMove{},
 }
 
-var base = discordmon.PokeMonBase{
+var base = mechanics.PokeMonBase{
 	Gendered:   false,
 	ID:         1,
 	Types:      [2]constants.PokeType{},
@@ -23,22 +23,22 @@ var base = discordmon.PokeMonBase{
 	Name:       ":frog:",
 }
 
-func newFrog() *discordmon.PokeMon {
+func newFrog() *mechanics.PokeMon {
 	random := rand.New(rand.NewSource(time.Now().UnixNano()))
 	randomIVS := *new([6]int)
-	moves := *new([4]discordmon.PokeMove)
+	pokeMoves := *new([4]mechanics.PokeMove)
 	evs := *new([6]int)
 	for i := 0; i < cap(randomIVS); i++ {
 		randomIVS[i] = random.Intn(32)
 	}
 
-	mon := discordmon.PokeMon{
+	mon := mechanics.PokeMon{
 		Base:       base,
 		EVS:        evs,
 		IVS:        randomIVS,
 		StatStages: [6]int{},
 		Stats:      [6]int{},
-		Moves:      moves,
+		Moves:      pokeMoves,
 		Gender:     random.Intn(2),
 		NVStatus:   0,
 		VStatus:    0,
@@ -57,5 +57,5 @@ func init() {
 	types[1] = constants.TypeGrass
 	base.Types = types
 	base.New = newFrog
-	discordmon.Table[base.ID] = base
+	mechanics.Table[base.ID] = base
 }

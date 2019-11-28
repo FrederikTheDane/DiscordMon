@@ -1,11 +1,11 @@
-package discordmonMoves
+package moves
 
 import (
-	"github.com/frederikthedane/discordmon"
-	"github.com/frederikthedane/discordmon/constants"
+	"github.com/frederikthedane/DiscordMon/internal/constants"
+	"github.com/frederikthedane/DiscordMon/internal/mechanics"
 )
 
-var MoveGrowl = discordmon.PokeMove{
+var MoveGrowl = mechanics.PokeMove{
 	Type:           constants.TypeNormal,
 	Category:       constants.CategoryStatus,
 	PP:             40,

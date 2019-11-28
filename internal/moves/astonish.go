@@ -1,11 +1,11 @@
-package discordmonMoves
+package moves
 
 import (
-	"github.com/frederikthedane/discordmon"
-	"github.com/frederikthedane/discordmon/constants"
+	"github.com/frederikthedane/DiscordMon/internal/constants"
+	"github.com/frederikthedane/DiscordMon/internal/mechanics"
 )
 
-var MoveAstonish = discordmon.PokeMove{
+var MoveAstonish = mechanics.PokeMove{
 	Type:           constants.TypeGhost,
 	Category:       constants.CategoryPhysical,
 	PP:             15,

@@ -2,26 +2,26 @@ package main
 
 import (
 	"fmt"
-	"github.com/frederikthedane/discordmon"
-	"github.com/frederikthedane/discordmon/constants"
-	_ "github.com/frederikthedane/discordmon/monsters"
-	"github.com/frederikthedane/discordmon/moves"
+	"github.com/frederikthedane/DiscordMon/internal/constants"
+	"github.com/frederikthedane/DiscordMon/internal/mechanics"
+	_ "github.com/frederikthedane/DiscordMon/internal/monsters"
+	"github.com/frederikthedane/DiscordMon/internal/moves"
 )
 
 func main() {
-	var monsters = make([]*discordmon.PokeMon, 2)
+	var monsters = make([]*mechanics.PokeMon, 2)
 
 	displayNatures()
 	fmt.Printf("\n")
 	for k, v := range monsters{
-		v = discordmon.NewFromID(1)
+		v = mechanics.NewFromID(1)
 		v.SetLevel(100)
 		v.GainEVs([6]int{255, 255, 255, 255, 255, 255})
 		v.SetNick("Test subject " + fmt.Sprintf("%v", k))
 		displayPokemon(v, false)
 	}
 
-	discordmon.DoTurn(monsters[0], &discordmonMoves.MoveTackle, monsters[1], &discordmonMoves.MoveTackle)
+	mechanics.DoTurn(monsters[0], &moves.MoveTackle, monsters[1], &moves.MoveTackle)
 }
 
 func displayNatures() {
@@ -30,7 +30,7 @@ func displayNatures() {
 	}
 }
 
-func displayPokemon(mon *discordmon.PokeMon, detailed bool) {
+func displayPokemon(mon *mechanics.PokeMon, detailed bool) {
 	fmt.Printf("%16s %s\n", "Pokemon name:", mon.Base.Name)
 	fmt.Printf("%16s %s\n", "Pokemon nick:", mon.Nick)
 	fmt.Printf("%16s %d\n", "Level:", mon.Level)

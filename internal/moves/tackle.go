@@ -1,12 +1,12 @@
-package discordmonMoves
+package moves
 
 import (
-	"github.com/frederikthedane/discordmon"
-	"github.com/frederikthedane/discordmon/constants"
+	"github.com/frederikthedane/DiscordMon/internal/constants"
+	"github.com/frederikthedane/DiscordMon/internal/mechanics"
 )
 
 
-var MoveTackle = discordmon.PokeMove{
+var MoveTackle = mechanics.PokeMove{
 	Type:           constants.TypeNormal,
 	Category:       constants.CategoryPhysical,
 	PP:             35,

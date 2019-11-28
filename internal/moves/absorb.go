@@ -1,11 +1,11 @@
-package discordmonMoves
+package moves
 
 import (
-	"github.com/frederikthedane/discordmon"
-	"github.com/frederikthedane/discordmon/constants"
+	"github.com/frederikthedane/DiscordMon/internal/constants"
+	"github.com/frederikthedane/DiscordMon/internal/mechanics"
 )
 
-var MoveAbsorb = discordmon.PokeMove{
+var MoveAbsorb = mechanics.PokeMove{
 	Type:           constants.TypeGrass,
 	Category:       constants.CategorySpecial,
 	PP:             25,

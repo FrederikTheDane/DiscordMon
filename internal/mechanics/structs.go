@@ -1,7 +1,7 @@
-package discordmon
+package mechanics
 
 import (
-	"github.com/frederikthedane/discordmon/constants"
+	"github.com/frederikthedane/DiscordMon/internal/constants"
 	"math"
 )
 

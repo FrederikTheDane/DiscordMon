@@ -1,4 +1,4 @@
-package discordmon
+package mechanics
 
 var Table map[int]PokeMonBase
 
