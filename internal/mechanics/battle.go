@@ -1,11 +1,5 @@
 package mechanics
 
-var Table map[int]PokeMonBase
-
-func init() {
-	Table = map[int]PokeMonBase{}
-}
-
 //Sums ints in an array
 func sumInts(ints []int) int {
 	sum := 0
@@ -36,11 +30,6 @@ func getLargestKey(ints []int) int {
 		}
 	}
 	return largest
-}
-
-//Get a new PokeMon with the given numeric ID
-func NewFromID(ID int) *PokeMon {
-	return Table[ID].New()
 }
 
 //TODO: Make this func flexible to allow moves with special effects such as absorb, super fang and so on.

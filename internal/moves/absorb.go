@@ -7,7 +7,7 @@ import (
 
 var MoveAbsorb = mechanics.PokeMove{
 	Type:           constants.TypeGrass,
-	Category:       constants.CategorySpecial,
+	Category:       constants.Special,
 	PP:             25,
 	Power:          20,
 	Accuracy:       1.0,

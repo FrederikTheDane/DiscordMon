@@ -23,7 +23,7 @@ var base = mechanics.PokeMonBase{
 	Name:      ":frog:",
 }
 
-func newFrog() *mechanics.PokeMon {
+func NewFrog() *mechanics.PokeMon {
 	random := rand.New(rand.NewSource(time.Now().UnixNano()))
 	randomIVS := *new([6]int)
 	pokeMoves := *new([4]mechanics.PokeMove)
@@ -43,7 +43,7 @@ func newFrog() *mechanics.PokeMon {
 		NVStatus:   0,
 		VStatus:    0,
 		Level:      1,
-		Nature:     random.Intn(constants.NatureSerious + 1),
+		Nature:     constants.Nature(random.Intn(int(constants.Serious) + 1)),
 		PokeRus:    false,
 		Nick:       "Frog",
 	}
@@ -56,6 +56,5 @@ func init() {
 	types[0] = constants.TypeWater
 	types[1] = constants.TypeGrass
 	base.Types = types
-	base.New = newFrog
-	mechanics.Table[base.ID] = base
+	base.New = NewFrog
 }

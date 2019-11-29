@@ -7,7 +7,7 @@ import (
 
 var MoveAstonish = mechanics.PokeMove{
 	Type:           constants.TypeGhost,
-	Category:       constants.CategoryPhysical,
+	Category:       constants.Physical,
 	PP:             15,
 	Power:          30,
 	Accuracy:       1.0,

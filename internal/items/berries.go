@@ -4,6 +4,4 @@ import (
 	"github.com/frederikthedane/DiscordMon/internal/mechanics"
 )
 
-var OranBerry = mechanics.PokeHeldItem{
-
-}
+var OranBerry = mechanics.PokeHeldItem{}

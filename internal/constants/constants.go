@@ -1,137 +1,149 @@
 package constants
 
 // Move category consts
+type MoveCategory int
+
 const (
-	CategoryPhysical = iota
-	CategorySpecial
-	CategoryStatus
+	Physical MoveCategory = iota
+	Special
+	Status
 )
 
 // Non-volatile status conditions
+type NVStat int
+
 const (
-	NVStatusBurned = iota
-	NVStatusFrozen
-	NVStatusParalyzed
-	NVStatusPoisoned
-	NVStatusBadlyPoisoned
-	NVStatusSleeping
+	Burned NVStat = iota
+	Frozen
+	Paralyzed
+	Poisoned
+	Badlypoisoned
+	Sleeping
 )
 
 // Volatile status conditions, as a mask
+type VStat int
+
 const (
-	VStatusBound = 1 << iota
-	VStatusCantEscape
-	VStatusConfused
-	VStatusCursed
-	VStatusEmbargoed
-	VStatusEncored
-	VStatusFlinched
-	VStatusHealBlocked
-	VStatusIdentified
-	VStatusInfatuated
-	VStatusLeechSeeded
-	VStatusNightmare
-	VStatusPerishSong
-	VStatusSpooked
-	VStatusTaunted
-	VStatusTelekinesis
-	VStatusTormented
+	Bound VStat = 1 << iota
+	CantEscape
+	Confused
+	Cursed
+	Embargoed
+	Encored
+	Flinched
+	HealBlocked
+	Identified
+	Infatuated
+	LeechSeeded
+	Nightmare
+	PerishSong
+	Spooked
+	Taunted
+	Telekinesis
+	Tormented
 )
 
 //Stat position
+type Stat int
+
 const (
-	StatHP = iota
-	StatAttack
-	StatDefense
-	StatSAttack
-	StatSDefense
-	StatSpeed
+	HP Stat = iota
+	Attack
+	Defense
+	SAttack
+	SDefense
+	Speed
 )
 
 // Natures
+type Nature int
+
 const (
-	NatureHardy = iota
-	NatureLonely
-	NatureAdamant
-	NatureNaughty
-	NatureBrave
-	NatureBold
-	NatureDocile
-	NatureImpish
-	NatureLax
-	NatureRelaxed
-	NatureModest
-	NatureMild
-	NatureBashful
-	NatureRash
-	NatureQuiet
-	NatureCalm
-	NatureGentle
-	NatureCareful
-	NatureQuirky
-	NatureSassy
-	NatureTimid
-	NatureHasty
-	NatureJolly
-	NatureNaive
-	NatureSerious
+	Hardy Nature = iota
+	Lonely
+	Adamant
+	Naughty
+	Brave
+	Bold
+	Docile
+	Impish
+	Lax
+	Relaxed
+	Modest
+	Mild
+	Bashful
+	Rash
+	Quiet
+	Calm
+	Gentle
+	Careful
+	Quirky
+	Sassy
+	Timid
+	Hasty
+	Jolly
+	Naive
+	Serious
 )
 
 var (
-	StatNames   map[int]string
-	Natures     map[int][]float32
-	NatureNames map[int]string
+	StatNames   map[Stat]string
+	Natures     map[Nature][]float32
+	NatureNames map[Nature]string
 )
 
 func init() {
 	//Doesn't need to be in it's own block, but improves readability
 	{
-		StatNames = make(map[int]string)
+		StatNames = make(map[Stat]string)
 
-		StatNames[StatHP] = "HP"
-		StatNames[StatAttack] = "Attack"
-		StatNames[StatDefense] = "Defense"
-		StatNames[StatSAttack] = "Special Attack"
-		StatNames[StatSDefense] = "Special Defense"
-		StatNames[StatSpeed] = "Speed"
+		StatNames[HP] = "HP"
+		StatNames[Attack] = "Attack"
+		StatNames[Defense] = "Defense"
+		StatNames[SAttack] = "Special Attack"
+		StatNames[SDefense] = "Special Defense"
+		StatNames[Speed] = "Speed"
 	}
 
 	//Doesn't need to be in it's own block, but improves readability
 	{
-		NatureNames = make(map[int]string)
+		NatureNames = make(map[Nature]string)
 
-		NatureNames[NatureHardy] = "Hardy"
-		NatureNames[NatureLonely] = "Lonely"
-		NatureNames[NatureAdamant] = "Adamant"
-		NatureNames[NatureNaughty] = "Naughty"
-		NatureNames[NatureBrave] = "Brave"
-		NatureNames[NatureBold] = "Bold"
-		NatureNames[NatureDocile] = "Docile"
-		NatureNames[NatureImpish] = "Impish"
-		NatureNames[NatureLax] = "Lax"
-		NatureNames[NatureRelaxed] = "Relaxed"
-		NatureNames[NatureModest] = "Modest"
-		NatureNames[NatureMild] = "Mild"
-		NatureNames[NatureBashful] = "Bashful"
-		NatureNames[NatureRash] = "Rash"
-		NatureNames[NatureQuiet] = "Quiet"
-		NatureNames[NatureCalm] = "Calm"
-		NatureNames[NatureGentle] = "Gentle"
-		NatureNames[NatureCareful] = "Careful"
-		NatureNames[NatureQuirky] = "Quirky"
-		NatureNames[NatureSassy] = "Sassy"
-		NatureNames[NatureTimid] = "Timid"
-		NatureNames[NatureHasty] = "Hasty"
-		NatureNames[NatureJolly] = "Jolly"
-		NatureNames[NatureNaive] = "Naive"
-		NatureNames[NatureSerious] = "Serious"
+		NatureNames[Hardy] = "Hardy"
+		NatureNames[Lonely] = "Lonely"
+		NatureNames[Adamant] = "Adamant"
+		NatureNames[Naughty] = "Naughty"
+		NatureNames[Brave] = "Brave"
+		NatureNames[Bold] = "Bold"
+		NatureNames[Docile] = "Docile"
+		NatureNames[Impish] = "Impish"
+		NatureNames[Lax] = "Lax"
+		NatureNames[Relaxed] = "Relaxed"
+		NatureNames[Modest] = "Modest"
+		NatureNames[Mild] = "Mild"
+		NatureNames[Bashful] = "Bashful"
+		NatureNames[Rash] = "Rash"
+		NatureNames[Quiet] = "Quiet"
+		NatureNames[Calm] = "Calm"
+		NatureNames[Gentle] = "Gentle"
+		NatureNames[Careful] = "Careful"
+		NatureNames[Quirky] = "Quirky"
+		NatureNames[Sassy] = "Sassy"
+		NatureNames[Timid] = "Timid"
+		NatureNames[Hasty] = "Hasty"
+		NatureNames[Jolly] = "Jolly"
+		NatureNames[Naive] = "Naive"
+		NatureNames[Serious] = "Serious"
 	}
 
-	Natures = make(map[int][]float32)
-	var i int
+	//Give all natures their corresponding stat modifiers
+	//IIRC it loops over the natures and changes the buffed and crippled stats
+	Natures = make(map[Nature][]float32)
+	var i Nature
 	m := 1
 	n := 1
-	for i = 0; i <= NatureSerious; i++ {
+	for i = 0; i <= Serious; i++ {
 		numArray := make([]float32, 6)
 		for j := 0; j < 6; j++ {
 			numArray[j] = 1.0

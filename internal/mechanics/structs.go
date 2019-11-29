@@ -21,16 +21,19 @@ type PokeMonBase struct {
 
 //Things that may change for a pokemon over time
 type PokeMon struct {
-	Base                                     PokeMonBase
-	EVS                                      [6]int
-	IVS                                      [6]int
-	StatStages                               [6]int
-	Stats                                    [6]int
-	BattleStats                              [6]int
-	Moves                                    [4]PokeMove
-	Gender, NVStatus, VStatus, Level, Nature int
-	PokeRus                                  bool
-	Nick                                     string
+	Base          PokeMonBase
+	EVS           [6]int
+	IVS           [6]int
+	StatStages    [6]int
+	Stats         [6]int
+	BattleStats   [6]int
+	Moves         [4]PokeMove
+	Gender, Level int
+	VStatus       constants.VStat
+	NVStatus      constants.NVStat
+	Nature        constants.Nature
+	PokeRus       bool
+	Nick          string
 }
 
 //Gives the pokemon a nickname
@@ -78,7 +81,7 @@ func (mon *PokeMon) GainEVs(evs [6]int) {
 //Calculates a PokeMons stats (including hp) from lvl, iv's ev's and base stats
 func (mon *PokeMon) CalculateStats() [6]int {
 	stats := *new([6]int)
-	stats[constants.StatHP] = mon.CalculateHP()
+	stats[constants.HP] = mon.CalculateHP()
 	lvl := mon.Level
 	for i := 1; i < 6; i++ {
 		bsStat := mon.Base.BaseStats[i]
@@ -92,9 +95,9 @@ func (mon *PokeMon) CalculateStats() [6]int {
 
 //Same as above, but only for HP, as the formula is a bit different
 func (mon *PokeMon) CalculateHP() int {
-	bsHP := mon.Base.BaseStats[constants.StatHP]
-	ivHP := mon.IVS[constants.StatHP]
-	evHP := mon.EVS[constants.StatHP]
+	bsHP := mon.Base.BaseStats[constants.HP]
+	ivHP := mon.IVS[constants.HP]
+	evHP := mon.EVS[constants.HP]
 	lvl := mon.Level
 	stat := int(math.Floor(float64((2*bsHP+ivHP+evHP)*lvl/100 + lvl + 10)))
 	return stat
@@ -118,7 +121,7 @@ func (mon *PokeMon) CalculateDamageMultiplier(pokeType constants.PokeType) float
 
 type PokeMove struct {
 	Type           constants.PokeType
-	Category       int
+	Category       constants.MoveCategory
 	PP             int
 	Power          int
 	Accuracy       float64

@@ -1,31 +1,49 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"github.com/bwmarrin/discordgo"
 	"github.com/frederikthedane/DiscordMon/internal/constants"
 	"github.com/frederikthedane/DiscordMon/internal/mechanics"
-	_ "github.com/frederikthedane/DiscordMon/internal/monsters"
-	"github.com/frederikthedane/DiscordMon/internal/moves"
+	"github.com/frederikthedane/DiscordMon/internal/monsters"
+	"log"
+	"os"
 )
 
 func main() {
-	var monsters = make([]*mechanics.PokeMon, 2)
+	token := *flag.String("token", "", "Bot token")
+
+	if token == "" {
+		log.Println("Please provide a token")
+		os.Exit(1)
+	}
+
+	session, err := discordgo.New("Bot " + token)
+	if err != nil {
+		panic(err)
+	}
+
+	session.AddHandler(func(s *discordgo.Session, e *discordgo.Ready) {
+		fmt.Printf("Logged in as %s#%s\n", e.User.Username, e.User.Discriminator)
+		fmt.Printf("Connected to %d guilds\n", len(e.Guilds))
+	})
+
+	var mons = make([]*mechanics.PokeMon, 2)
 
 	displayNatures()
 	fmt.Printf("\n")
-	for k, v := range monsters {
-		v = mechanics.NewFromID(1)
+	for k, v := range mons {
+		v = monsters.NewFrog()
 		v.SetLevel(100)
 		v.GainEVs([6]int{255, 255, 255, 255, 255, 255})
 		v.SetNick("Test subject " + fmt.Sprintf("%v", k))
 		displayPokemon(v, false)
 	}
-
-	mechanics.DoTurn(monsters[0], &moves.MoveTackle, monsters[1], &moves.MoveTackle)
 }
 
 func displayNatures() {
-	for i := 0; i <= constants.NatureSerious; i++ {
+	for i := constants.Hardy; i <= constants.Serious; i++ {
 		fmt.Printf("%10s %4v\n", constants.NatureNames[i], constants.Natures[i])
 	}
 }

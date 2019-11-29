@@ -7,7 +7,7 @@ import (
 
 var MoveTackle = mechanics.PokeMove{
 	Type:           constants.TypeNormal,
-	Category:       constants.CategoryPhysical,
+	Category:       constants.Physical,
 	PP:             35,
 	Power:          40,
 	Accuracy:       1.0,

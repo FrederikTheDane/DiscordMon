@@ -7,7 +7,7 @@ import (
 
 var MoveGrowl = mechanics.PokeMove{
 	Type:           constants.TypeNormal,
-	Category:       constants.CategoryStatus,
+	Category:       constants.Status,
 	PP:             40,
 	Power:          0,
 	Accuracy:       1.0,

@@ -14,14 +14,16 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "dependsOn": [
+                "Format"
+            ],
         },
         {
             "label": "Format",
             "type": "shell",
-            "command": "go",
+            "command": "gofmt",
             "args": [
-                "fmt",
                 "."
             ],
             "problemMatcher": [
