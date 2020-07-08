@@ -17,7 +17,7 @@ const (
 	Frozen
 	Paralyzed
 	Poisoned
-	Badlypoisoned
+	BadlyPoisoned
 	Sleeping
 )
 

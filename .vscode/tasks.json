@@ -17,7 +17,7 @@
             },
             "dependsOn": [
                 "Format"
-            ],
+            ]
         },
         {
             "label": "Format",
@@ -25,6 +25,19 @@
             "command": "gofmt",
             "args": [
                 "."
+            ],
+            "problemMatcher": [
+                "$go"
+            ]
+        },
+        {
+            "label": "Test",
+            "type": "shell",
+            "command": "go",
+            "args": [
+                "test",
+                "-count=1",
+                "./..."
             ],
             "problemMatcher": [
                 "$go"

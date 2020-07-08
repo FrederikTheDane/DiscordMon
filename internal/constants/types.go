@@ -1,11 +1,15 @@
 package constants
 
 type PokeType struct {
-	Name      string
-	TypeID    int
-	WeakDef   int
-	StrongDef int
-	NoEffect  int
+	Name      string `json:"name"`
+	TypeID    int    `json:"id"`
+	WeakDef   int    `json:"weak_def"`
+	StrongDef int    `json:"strong_def"`
+	NoEffect  int    `json:"immune"`
+}
+
+func (t PokeType) String() string {
+	return t.Name
 }
 
 // All Pokemon types, as a mask
@@ -201,4 +205,27 @@ func init() {
 	TypeMap[IDDark] = TypeDark
 	TypeMap[IDSteel] = TypeSteel
 	TypeMap[IDFairy] = TypeFairy
+}
+
+func GetTypesFromID(id int) [2]*PokeType {
+	types := make([]PokeType, 0, 2)
+	for k := range TypeMap {
+		if id&k == k {
+			types = append(types, TypeMap[k])
+		}
+	}
+
+	if len(types) > 2 {
+		panic("Only a maximum of 2 PokeTypes is allowed!")
+	}
+
+	var arr = [2]*PokeType{nil, nil}
+
+	arr[0] = &types[0]
+
+	if len(types) == 2 {
+		arr[1] = &types[1]
+	}
+
+	return arr
 }

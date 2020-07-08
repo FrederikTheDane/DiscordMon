@@ -5,21 +5,59 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/frederikthedane/DiscordMon/internal/constants"
+	"github.com/frederikthedane/DiscordMon/internal/discord/commands"
+	"github.com/frederikthedane/DiscordMon/internal/discord/database"
 	"github.com/frederikthedane/DiscordMon/internal/mechanics"
 	"github.com/frederikthedane/DiscordMon/internal/monsters"
 	"log"
 	"os"
+	"os/signal"
+	"strings"
+	"syscall"
 )
 
 func main() {
-	token := *flag.String("token", "", "Bot token")
+	token := flag.String("token", "", "Bot token")
+	dbUser := flag.String("dbuser", "", "Database user")
+	dbPwd := flag.String("dbpwd", "", "Database password")
+	dbHost := flag.String("dbhost", "localhost", "Database host network location")
+	dbPort := flag.String("dbport", "5432", "Database host port")
+	dbName := flag.String("dbname", "discordmon", "Database name")
 
-	if token == "" {
-		log.Println("Please provide a token")
-		os.Exit(1)
+	flag.Parse()
+
+	if *dbUser == "" || *dbPwd == "" {
+		log.Fatalln("Please provide a database username and password")
 	}
 
-	session, err := discordgo.New("Bot " + token)
+	if *token == "" {
+		log.Fatalln("Please provide a token")
+	}
+
+	os.Setenv("DISCORDMON_DB_HOST", *dbHost)
+	os.Setenv("DISCORDMON_DB_PORT", *dbPort)
+	os.Setenv("DISCORDMON_DB_USER", *dbUser)
+	os.Setenv("DISCORDMON_DB_PWD", *dbPwd)
+	os.Setenv("DISCORDMON_DB_NAME", *dbName)
+
+	dbErr := database.Connect()
+	if dbErr != nil {
+		log.Fatalln(dbErr)
+	}
+
+	var mons = make([]*mechanics.PokeMon, 2)
+
+	//displayNatures()
+	fmt.Printf("\n")
+	for k, _ := range mons {
+		mons[k] = monsters.NewFrog()
+		mons[k].SetLevel(100)
+		mons[k].GainEVs([6]int{255, 255, 255, 255, 255, 255})
+		mons[k].SetNick("Test subject " + fmt.Sprintf("%v", k))
+		//displayPokemon(v, false)
+	}
+
+	session, err := discordgo.New("Bot " + *token)
 	if err != nil {
 		panic(err)
 	}
@@ -29,17 +67,24 @@ func main() {
 		fmt.Printf("Connected to %d guilds\n", len(e.Guilds))
 	})
 
-	var mons = make([]*mechanics.PokeMon, 2)
+	session.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
+		if strings.HasPrefix(m.Content, "dm!") {
+			cmdName := strings.Fields(m.Content[3:])[0]
+			if cmd, ok := commands.CommandList[cmdName]; ok {
+				commands.TryInvoke(s, m.Message, cmd)
+			}
+		}
+	})
 
-	displayNatures()
-	fmt.Printf("\n")
-	for k, v := range mons {
-		v = monsters.NewFrog()
-		v.SetLevel(100)
-		v.GainEVs([6]int{255, 255, 255, 255, 255, 255})
-		v.SetNick("Test subject " + fmt.Sprintf("%v", k))
-		displayPokemon(v, false)
+	if err = session.Open(); err != nil {
+		panic(err)
 	}
+
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, os.Interrupt, os.Kill, syscall.SIGTERM)
+	<-sig
+
+	_ = session.Close()
 }
 
 func displayNatures() {

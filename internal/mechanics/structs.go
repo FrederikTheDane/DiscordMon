@@ -9,7 +9,7 @@ import (
 type PokeMonBase struct {
 	Gendered                  bool
 	ID, CatchRate, HatchSteps int
-	Types                     [2]constants.PokeType
+	Types                     [2]*constants.PokeType
 	BaseStats                 [6]int
 	EVYield                   [6]int
 	MovePool                  MovePool
@@ -21,11 +21,13 @@ type PokeMonBase struct {
 
 //Things that may change for a pokemon over time
 type PokeMon struct {
-	Base          PokeMonBase
-	EVS           [6]int
-	IVS           [6]int
-	StatStages    [6]int
-	Stats         [6]int
+	Base PokeMonBase
+	EVS  [6]int
+	IVS  [6]int
+	//Stat changes in battle
+	StatStages [6]int
+	Stats      [6]int
+	//Effective stats after stages have been applied
 	BattleStats   [6]int
 	Moves         [4]PokeMove
 	Gender, Level int
@@ -120,6 +122,7 @@ func (mon *PokeMon) CalculateDamageMultiplier(pokeType constants.PokeType) float
 }
 
 type PokeMove struct {
+	Name           string
 	Type           constants.PokeType
 	Category       constants.MoveCategory
 	PP             int
