@@ -1,8 +1,5 @@
-module github.com/frederikthedane/DiscordMon
+module github.com/FrederikTheDane/DiscordMon
 
-go 1.13
+go 1.14
 
-require (
-	github.com/bwmarrin/discordgo v0.20.1
-	github.com/lib/pq v1.2.0
-)
+require github.com/bwmarrin/discordgo v0.21.1
